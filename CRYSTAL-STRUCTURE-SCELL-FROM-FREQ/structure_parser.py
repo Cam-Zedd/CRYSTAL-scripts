@@ -1,8 +1,12 @@
 import os
 
 def process_files_in_directory(directory_path):
-    # Parcourir tous les fichiers dans le répertoire donné
-    file_list = [f for f in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, f))]
+    # Extensions à exclure
+    excluded_extensions = {'.xyz', '.png', '.py', '.tiff', '.eps', '.svg', '.jpg', '.jpeg'}
+    
+    # Parcourir tous les fichiers dans le répertoire donné, et exclure ceux avec les extensions non désirées
+    file_list = [f for f in os.listdir(directory_path) 
+                 if os.path.isfile(os.path.join(directory_path, f)) and not f.endswith(tuple(excluded_extensions))]
 
     for file_name in file_list:
         file_path = os.path.join(directory_path, file_name)
